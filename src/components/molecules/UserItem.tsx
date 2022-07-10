@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Avatar } from '../atoms/Avatar';
 import { UserDTO } from '../organisms/Users';
 
 const ItemContainer = styled.li`
@@ -27,7 +28,7 @@ export type UserItemProps = {
 export const UserItem = ({ user }: UserItemProps) => {
     return (
         <ItemContainer>
-            <img src={user.avatar_url} />
+            <Avatar src={user.avatar_url} />
             <InfosContainer>
                 <span>{user.name}</span>
                 <span>{user.position}</span>
