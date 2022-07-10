@@ -1,0 +1,8 @@
+*.swp
+*.rubocop.yml
+*.swo
+node_modules
+dist
+.cache
+*.DS_Store
+data_science/data/*.csv
