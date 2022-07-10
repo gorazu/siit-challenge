@@ -17,7 +17,7 @@ export type ServiceDTO = {
     price: Price;
 };
 
-const fetchServices = async () => {
+export const fetchServices = async () => {
     const response = await axios.get<ServiceDTO[]>('/services.json');
 
     return response.data;
@@ -36,8 +36,6 @@ export const Services = () => {
     }, []);
 
     if (!Services) return null;
-
-    console.log(services);
 
     return (
         <div>

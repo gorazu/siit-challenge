@@ -2,6 +2,7 @@ import * as React from 'react';
 import { UserDTO } from '../organisms/Users';
 import styled from 'styled-components';
 import { UserItem } from './UserItem';
+import { UserFilters, UsersFilters } from './UsersFilters';
 
 const ListContainer = styled.ul`
     list-style: none;
@@ -13,14 +14,19 @@ const ListContainer = styled.ul`
 
 export type UsersListProps = {
     users: UserDTO[];
+    filters: UserFilters;
+    onChangeFilters: (filters: UserFilters) => void;
 };
 
-export const UsersList = ({ users }: UsersListProps) => {
+export const UsersList = ({ users, filters, onChangeFilters }: UsersListProps) => {
     return (
-        <ListContainer>
-            {users.map((user) => (
-                <UserItem key={user.id} user={user} />
-            ))}
-        </ListContainer>
+        <>
+            <UsersFilters filters={filters} onChange={onChangeFilters} />
+            <ListContainer>
+                {users.map((user) => (
+                    <UserItem key={user.id} user={user} />
+                ))}
+            </ListContainer>
+        </>
     );
 };
