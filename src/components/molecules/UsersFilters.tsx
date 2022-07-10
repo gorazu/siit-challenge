@@ -3,6 +3,12 @@ import styled from 'styled-components';
 import { Tag } from '../atoms/Tag';
 import { fetchServices, ServiceDTO } from '../organisms/Services';
 
+const Container = styled.div`
+    border: 1px solid #e0e0e0;
+    padding: 0 1.5rem 1rem;
+    border-radius: 2px;
+`;
+
 const FiltersContainer = styled.div`
     display: flex;
     gap: 1rem;
@@ -36,7 +42,7 @@ export const UsersFilters = ({ filters, onChange }: UsersFiltersProps) => {
     }, []);
 
     return (
-        <div>
+        <Container>
             <h3>Filters</h3>
             <FiltersContainer>
                 <span>Services</span>
@@ -58,6 +64,6 @@ export const UsersFilters = ({ filters, onChange }: UsersFiltersProps) => {
                     ))}
                 </ValuesContainer>
             </FiltersContainer>
-        </div>
+        </Container>
     );
 };

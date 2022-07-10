@@ -11,7 +11,7 @@ export type UserDTO = {
     service_ids: number[];
 };
 
-const fetchUsers = async (serviceId?: number) => {
+export const fetchUsers = async (serviceId?: number) => {
     const response = await axios.get<UserDTO[]>(
         `/users.json${serviceId ? `?service_id=${serviceId}` : ''}`
     );

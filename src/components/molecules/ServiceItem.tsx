@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Avatar } from '../atoms/Avatar';
 import { Icon } from '../atoms/Icon';
 import { ServiceDTO } from '../organisms/Services';
+import { fetchUsers } from '../organisms/Users';
 
 const ItemContainer = styled.li`
     padding: 0.5rem 1rem;
@@ -27,6 +28,7 @@ const HomePageUrlContainer = styled.a`
 `;
 
 const TitleContainer = styled.div`
+    flex: 1;
     display: flex;
     gap: 1rem;
     align-items: center;
@@ -37,12 +39,35 @@ export type ServiceItemProps = {
 };
 
 export const ServiceItem = ({ service }: ServiceItemProps) => {
+    const [usersCount, setUsersCount] = React.useState(0);
+
+    React.useEffect(() => {
+        const fetchUsersCount = async () => {
+            const users = await fetchUsers(service.id);
+
+            setUsersCount(users.length);
+        };
+
+        fetchUsersCount();
+    }, []);
+
+    const monthlyPrice = React.useMemo(
+        () =>
+            service.price.flat_cost +
+            service.price.cost_per_user *
+                (service.price.nb_users_included > usersCount
+                    ? 0
+                    : usersCount - service.price.nb_users_included),
+        [usersCount]
+    );
+
     return (
         <ItemContainer>
             <TitleContainer>
                 <Avatar src={service.logo_url} />
                 {service.name}
             </TitleContainer>
+            <span>Monthly price: {monthlyPrice}</span>
             <HomePageUrlContainer href={service.website_url} target="_blank">
                 <Icon>link</Icon>
             </HomePageUrlContainer>

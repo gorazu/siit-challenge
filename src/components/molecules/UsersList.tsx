@@ -14,7 +14,7 @@ const ListContainer = styled.ul`
 
 export type UsersListProps = {
     users: UserDTO[];
-    filters: UserFilters;
+    filters?: UserFilters;
     onChangeFilters: (filters: UserFilters) => void;
 };
 
