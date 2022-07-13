@@ -35,7 +35,7 @@ export const Services = () => {
         fetchData();
     }, []);
 
-    if (!Services) return null;
+    if (!services) return null;
 
     return (
         <div>
